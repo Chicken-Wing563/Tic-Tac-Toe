@@ -1,3 +1,15 @@
+<?php
+
+session_start();
+if (isset($_SESSION['1Spieler'])) {
+    $_GET['1Spieler'] = $_SESSION['1Spieler'];
+}
+if (isset($_SESSION['2Spieler'])) {
+    $_GET['2Spieler'] = $_SESSION['2Spieler'];
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +18,6 @@
 <link rel="stylesheet" type="text/css" href="stylesheets/style.css" >
 
 </head>
-
 
 <body>
 
@@ -32,15 +43,15 @@
 
 	<form action="spiel-tictactoe.php" method="get">
 	<div class="form-row">
-		<div class="form-group">
+		<div class="form-group" >
 			<label for="1Spieler" >1 Spieler:</label><br>
-			<input type="text" name="1Spieler"><br>
+			<input type="text" name="1Spieler" value="<?= htmlspecialchars($_SESSION['1Spieler'] ?? '') ?>" required ><br>
 		</div>
 		<br>
 		
-		<div class="form-group">
+		<div class="form-group" >
 			<label for="2Spieler" >2 Spieler:</label><br>
-			<input type="text" name="2Spieler">
+			<input type="text" name="2Spieler" value="<?= htmlspecialchars($_SESSION ['2Spieler'] ?? '') ?>" required >
 		</div>
 		
 		<br>
@@ -54,7 +65,6 @@
 	</form>
 	
 </div>
-
 
 </body>
 
