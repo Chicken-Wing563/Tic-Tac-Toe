@@ -169,7 +169,7 @@ else {
 	<div>	
 	
 		Dran ist grade: 
-		<input class="disabled" name="player" value="<?= $currentPlayer ?>"> 
+		<input class="disabled_button" name="player" value="<?= $currentPlayer ?>"> 
 		<!-- speichert den Zustand der spieler und zeigt gleichzeiig wer dran ist  -->
 		
 	</div>
@@ -187,7 +187,8 @@ else {
 
 	   <button type="submit" class="zentral button">Name ändern</button>
     </form>
-	
+	<br>
+	<a href="/tictactoe/highscore.php" class="zentral button" >Highscore</a>
 </div>
 
 

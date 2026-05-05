@@ -4,9 +4,9 @@
 }
 
 .zentral {
-text-align: center;
-    margin: 0 auto;
-	align-items: center;
+ text-align: center;
+ margin: 0 auto;
+ align-items: center;
 }
 
 .form-row {
@@ -29,7 +29,8 @@ h4 {
 
 .by {
 	font-size: 14px;
-	color:#fee1fb;
+	font-weight: 400;
+	color:#9A7AA0;
 }
 
 .form-group {
@@ -69,9 +70,9 @@ h1, h2, p {
 
 
 h1 {
-    font-size:clamp(1.2rem, 5vw, 2rem);
+    font-size:clamp(1.2rem, 5vw, 3rem);
     color: #6e226b;
-	 margin-top: 50px;
+	margin-top: 50px;
 }
 
 .button {
@@ -88,13 +89,13 @@ h1 {
 }
 
 .X {
-    color: #ad59a8;
-	font-size: 4rem;
+    color: #6e226b;
+	font-size: 4.5rem;
 }
 
 .O {
-    color: #ad59a8;
-	font-size: 4rem;
+    color: #6e226b;
+	font-size: 4.5rem;
 }
 
 
@@ -115,9 +116,9 @@ h1 {
 .container {
     width: 100%;
     margin: auto;
-    border: 2px solid white;
     padding: 10px;
-	 text-align: center
+	text-align: center;
+	background-color: #ffd9fb;
 }
 
 .score {
@@ -186,7 +187,7 @@ h1 {
   word-break: break-all;
 }
 
-.disabled {
+.disabled_button {
 	background-color:#fdd5f9;
 	color :#c278bd;
 	cursor: not-allowed;
@@ -200,10 +201,51 @@ h1 {
 	width: 15%; 
 }
 
+.container_highscore {
+  width: 90%;
+  margin: auto;         
+  padding: 30px;
+  text-align: center;
+  background-color: #ffd9fb;  
+  overflow-x: auto;
+}
+
+.container h1 {
+  margin-bottom: 30px;
+  font-size: 3rem;
+  color: #6e226b;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+table {
+  width: 80%;
+  margin: 0 auto;          
+  border-collapse: collapse;
+  background-color: #ebc5e9;
+}
+
+
+th, td {
+  padding: 16px 25px;      
+  text-align: center;
+}
+
+th {
+  background-color: #4c0d48;
+  color: #fff6ff;
+  font-size: 16px;
+  font-weight: bold;
+  border: 1px black;
+}
+
+td {
+  border: 1px solid;
+}
 
 @media (max-width: 500px) {
 
-	 .oben {
+	.oben {
  	   display: grid;
   	  grid-template-columns: 1fr auto 1fr;
  	   align-items: start;
@@ -227,3 +269,5 @@ h1 {
 		  }
 
 }
+
+
