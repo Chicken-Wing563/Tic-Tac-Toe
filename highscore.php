@@ -3,7 +3,6 @@
 
 <head> 
   
-    <meta charset="utf-8">
     <title>Tic Tac Toe Highscore Liste</title>
 	<meta charset="UTF-8"> <!-- Zeichencodierung wegen umlauten etc.-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +13,7 @@
 	
 <body>
 
-	<div class="zentral container_highscore">
+	<div class="zentral container_highscore_neu">
 		
 		<h1>&#10024; Hall of Fame &#10024;</h1>
 		

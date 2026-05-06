@@ -83,7 +83,7 @@ else {
 					$board = array_fill(1, 9, '');
 					$currentPlayer = 'X';
 					
-					/*noch nicht gewonnen spiler wechsel*/
+					/*noch nicht gewonnen spieler wechsel*/
 					} else {
 						$currentPlayer = ($currentPlayer === 'X') ? 'O' : 'X';
 			}
