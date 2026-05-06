@@ -3,15 +3,15 @@
 
 <head> 
   
-    <meta charset="utf-8">
+	<meta charset="utf-8">
     <title>Tic Tac Toe Highscore Liste</title>
-	<meta charset="UTF-8"> <!-- Zeichencodierung wegen umlauten etc.-->
+	<meta charset="UTF-8"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="stylesheets/style.css" >
 	
 	
 </head>
-	
+  
 <body>
 
 	<div class="zentral container_highscore">
@@ -22,6 +22,16 @@
 		
 			$mysqli = new mysqli("localhost", "root", "", "tictactoe");
 				
+			if (!empty($_POST['new_player_name'])) {
+				$stmt = $mysqli->prepare(
+					"INSERT INTO spieler (Name, Score, Created, Updated)
+					VALUES (?, 0, NOW(), NOW())"
+			);
+				$stmt->bind_param("s", $_POST['new_player_name']);
+				$stmt->execute();
+				$stmt->close();
+}
+
 			if (!empty($_POST['score_action']) && !empty($_POST['score_name'])) {
 
 				if ($_POST['score_action'] === 'plus') {
@@ -126,8 +136,20 @@
 		</table>
 		
 		<br>
-		<a href="/tictactoe/spiel-tictactoe.php" class="zentral button" >Weiter Spielen</a>
 	
+		<div class="button_fame_unten">
+
+			<a href="/tictactoe/spiel-tictactoe.php" class="zentral button">
+				Weiter Spielen
+			</a>
+
+			<a href="/tictactoe/neuer-spieler.php"
+				class="zentral button">
+				Neuer Spieler
+			</a>
+
+		</div>
+
 	</div>
 	
 

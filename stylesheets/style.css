@@ -202,9 +202,9 @@ h1 {
 }
 
 .container_highscore {
-  width: 90%;
+  width: 95%;
   margin: auto;         
-  padding: 30px;
+  padding: 20px;
   text-align: center;
   background-color: #ffd9fb;  
   overflow-x: auto;
@@ -219,7 +219,7 @@ h1 {
 }
 
 table {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;          
   border-collapse: collapse;
   background-color: #ebc5e9;
@@ -242,6 +242,32 @@ th {
 td {
   border: 1px solid;
 }
+
+.action-buttons {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+}
+
+.button_fame_unten {
+	display:flex; 
+	justify-content:center; 
+	gap:20px;
+}
+
+.button_fame {
+  background-color:#b86ead;
+  border: 0.5px solid;
+  color: #fff6ff;
+  padding: 6px 11px;
+  text-align: center;
+  display: inline-block;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+
+
 
 @media (max-width: 500px) {
 

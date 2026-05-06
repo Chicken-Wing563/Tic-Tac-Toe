@@ -33,7 +33,7 @@ if (isset($_SESSION['2Spieler'])) {
 
 <div>
 	<h4 class="zentral">
-		Bitte gebt eure Namen in den Feldern ein!
+		Bitte gebt eure Namen in die Feldern ein!
 	</h4>
 </div>
 
