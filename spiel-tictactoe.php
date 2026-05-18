@@ -3,6 +3,43 @@
 
 session_start(); /*starten*/
 
+
+if (!isset($_SESSION['roundFinished'])) {
+    $_SESSION['roundFinished'] = false;
+}
+
+
+$mysqli = new mysqli("localhost", "root", "", "tictactoe");
+
+function createPlayerIfNotExists($mysqli, $name) {
+    if ($name === '') return;
+
+    $stmt = $mysqli->prepare("SELECT 1 FROM spieler WHERE Name = ?");
+    $stmt->bind_param("s", $name);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows === 0) {
+        $insert = $mysqli->prepare(
+            "INSERT INTO spieler (Name, Score, Created, Updated)
+             VALUES (?, 0, NOW(), NOW())"
+        );
+        $insert->bind_param("s", $name);
+        $insert->execute();
+        $insert->close();
+    }
+
+    $stmt->close();
+}
+
+if (isset($_SESSION['1Spieler'])) {
+    createPlayerIfNotExists($mysqli, $_SESSION['1Spieler']);
+}
+if (isset($_SESSION['2Spieler'])) {
+    createPlayerIfNotExists($mysqli, $_SESSION['2Spieler']);
+}
+
+
 /*namen speichern*/
 if (isset($_GET['1Spieler'])) {
     $_SESSION['1Spieler'] = $_GET['1Spieler'];
@@ -52,6 +89,7 @@ if (isset($_GET['reset'])) {
 
     $_SESSION['scoreX'] = 0;
     $_SESSION['scoreO'] = 0;
+	$_SESSION['roundFinished'] = false;
 }
 
 else {
@@ -60,6 +98,9 @@ else {
 	$currentPlayer = $_GET['player'] ?? 'X';
 	
 	if (isset($_GET['cell'])) {
+		
+		$_SESSION['roundFinished'] = false;   
+		
 		$cell = (int)$_GET['cell']; /*spielfeld angeklickt*/ 
 		
 		if ($board[$cell] === '') {
@@ -67,25 +108,67 @@ else {
 			
 			$winner = checkWinner($board, $winCombos); /*prüft ob gewonnen*/
 			
-			/*wenn gewinnt score geht hoch und andere fängt an*/
+			
+		/*wenn gewinnt score geht hoch und andere fängt an*/
+		
 			if ($winner === 'X') {
-				$_SESSION['scoreX']++;
-				$board = array_fill(1, 9, '');
-				$currentPlayer = 'O';
+				if (!$_SESSION['roundFinished']) {
+					
+					$_SESSION['scoreX']++;
+			
+					$stmt = $mysqli->prepare("
+						UPDATE spieler
+						SET Score = Score + 1, Updated = NOW()
+						WHERE Name = ?
+					");
+
+					$stmt->bind_param("s", $_SESSION['1Spieler']);
+					$stmt->execute();
+					$stmt->close();
+			
+					$board = array_fill(1, 9, '');
+					$currentPlayer = 'O';
+					/*wenn gewinnt score geht hoch und anderer fängt an*/
+					
+					$_SESSION['roundFinished'] = true;
+				}
 				
-			/*wenn gewinnt score geht hoch und anderer fängt an*/
-				} elseif ($winner === 'O') {
-				$_SESSION['scoreO']++;
-				$board = array_fill(1, 9, '');
-				$currentPlayer = 'X';
-				
-				} elseif (!in_array('', $board, true)) {
+				header("Location: spiel-tictactoe.php");
+				exit;
+			}
+		
+			elseif ($winner === 'O') {
+				if (!$_SESSION['roundFinished']) {
+					
+					$_SESSION['scoreO']++;
+					$stmt = $mysqli->prepare("
+						UPDATE spieler
+						SET Score = Score + 1, Updated = NOW()
+						WHERE Name = ?
+						");
+					$stmt->bind_param("s", $_SESSION['2Spieler']);
+					$stmt->execute();
+					$stmt->close();
+			
 					$board = array_fill(1, 9, '');
 					$currentPlayer = 'X';
-					
-					/*noch nicht gewonnen spieler wechsel*/
-					} else {
-						$currentPlayer = ($currentPlayer === 'X') ? 'O' : 'X';
+			
+					$_SESSION['roundFinished'] = true;
+				}
+				
+				header("Location: spiel-tictactoe.php");
+				exit;
+			}
+		
+			elseif (!in_array('', $board, true)) {
+				$board = array_fill(1, 9, '');
+				$currentPlayer = 'X';
+			
+				/*noch nicht gewonnen spieler wechsel*/
+			}
+		
+			else {
+				$currentPlayer = ($currentPlayer === 'X') ? 'O' : 'X';
 			}
 		}
 	}

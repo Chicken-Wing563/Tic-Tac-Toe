@@ -61,10 +61,9 @@
 				$stmt->bind_param("s", $_POST['delete_Name']);
 				$stmt->execute();
 				$stmt->close();
-			}	
-
-
-		$result = $mysqli->query("SELECT * FROM spieler ORDER BY Score DESC");
+			}
+			
+			$result = $mysqli->query("SELECT * FROM spieler ORDER BY Score DESC");
 		
 		?>
 
@@ -87,7 +86,7 @@
 				<?php
 					foreach ($result as $key => $row) {
 
-						echo "<tr>";
+						echo "<tr data-score='{$row['Score']}'>";
 						
 						echo "<td>" . (++$key) . "</td>";
 						echo "<td>" . $row['Name'] . "</td>";
@@ -107,7 +106,7 @@
 							<form method='post' style='display:inline'>
 								<input type='hidden' name='score_name' value='{$row['Name']}'>
 								<input type='hidden' name='score_action' value='minus'>
-								<button class='button_fame'>-1</button>
+								<button class='button_fame minus'>-1</button>
 							</form>
 							
 							<br>

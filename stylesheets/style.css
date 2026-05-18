@@ -267,6 +267,14 @@ td {
 }
 
 
+tr[data-score="0"] .minus {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+
+
+
 
 
 @media (max-width: 500px) {

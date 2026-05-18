@@ -4,23 +4,32 @@
 <head> 
   
     <title>Tic Tac Toe Highscore Liste</title>
-	<meta charset="UTF-8"> <!-- Zeichencodierung wegen umlauten etc.-->
+	<meta charset="UTF-8"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="stylesheets/style.css" >
 	
-	
 </head>
-	
+  
 <body>
 
 	<div class="zentral container_highscore_neu">
 		
-		<h1>&#10024; Hall of Fame &#10024;</h1>
+		<h1>&#10024;Hall of Fame&#10024;</h1>
 		
 		<?php
 		
 			$mysqli = new mysqli("localhost", "root", "", "tictactoe");
 				
+			if (!empty($_POST['new_player_name'])) {
+				$stmt = $mysqli->prepare(
+					"INSERT INTO spieler (Name, Score, Created, Updated)
+					VALUES (?, 0, NOW(), NOW())"
+			);
+				$stmt->bind_param("s", $_POST['new_player_name']);
+				$stmt->execute();
+				$stmt->close();
+}
+
 			if (!empty($_POST['score_action']) && !empty($_POST['score_name'])) {
 
 				if ($_POST['score_action'] === 'plus') {
@@ -52,10 +61,9 @@
 				$stmt->bind_param("s", $_POST['delete_Name']);
 				$stmt->execute();
 				$stmt->close();
-			}	
-
-
-		$result = $mysqli->query("SELECT * FROM spieler ORDER BY Score DESC");
+			}
+			
+			$result = $mysqli->query("SELECT * FROM spieler ORDER BY Score DESC");
 		
 		?>
 
@@ -78,7 +86,7 @@
 				<?php
 					foreach ($result as $key => $row) {
 
-						echo "<tr>";
+						echo "<tr data-score='{$row['Score']}'>";
 						
 						echo "<td>" . (++$key) . "</td>";
 						echo "<td>" . $row['Name'] . "</td>";
@@ -98,7 +106,7 @@
 							<form method='post' style='display:inline'>
 								<input type='hidden' name='score_name' value='{$row['Name']}'>
 								<input type='hidden' name='score_action' value='minus'>
-								<button class='button_fame'>-1</button>
+								<button class='button_fame minus'>-1</button>
 							</form>
 							
 							<br>
@@ -125,11 +133,22 @@
 		</table>
 		
 		<br>
-		<a href="/tictactoe/spiel-tictactoe.php" class="zentral button" >Weiter Spielen</a>
 	
+		<div class="button_fame_unten">
+
+			<a href="/tictactoe/spiel-tictactoe.php" class="zentral button">
+				Weiter Spielen
+			</a>
+
+			<a href="/tictactoe/neuer-spieler.php"
+				class="zentral button">
+				Neuer Spieler
+			</a>
+
+		</div>
+
 	</div>
 	
-
 </body>
 
 </html>

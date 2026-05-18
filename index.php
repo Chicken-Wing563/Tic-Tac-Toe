@@ -29,7 +29,7 @@ if (isset($_SESSION['2Spieler'])) {
 	</h1>
 </div>
 
-<br><br>
+<br>
 
 <div>
 	<h4 class="zentral">
