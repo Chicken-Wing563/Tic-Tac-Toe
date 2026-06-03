@@ -1,18 +1,8 @@
-<?php
-
-session_start();
-if (isset($_SESSION['1Spieler'])) {
-    $_GET['1Spieler'] = $_SESSION['1Spieler'];
-}
-if (isset($_SESSION['2Spieler'])) {
-    $_GET['2Spieler'] = $_SESSION['2Spieler'];
-}
-?>
-
-
 <!DOCTYPE html>
 <html>
+
 <head>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title> Startseite Tic Tac Toe </title>
 <link rel="stylesheet" type="text/css" href="stylesheets/style.css" >
@@ -25,7 +15,7 @@ if (isset($_SESSION['2Spieler'])) {
 	<h1>
 		Willkommen zu<br> 
 		Tic Tac Toe 
-		<p class="by"> by Amelie </p>
+		<p class="by"> by Amelie &#9996;</p>
 	</h1>
 </div>
 
@@ -33,7 +23,7 @@ if (isset($_SESSION['2Spieler'])) {
 
 <div>
 	<h4 class="zentral">
-		Bitte gebt eure Namen in die Feldern ein!
+		Bitte gib dein Namen in das Feld ein!
 	</h4>
 </div>
 
@@ -41,27 +31,46 @@ if (isset($_SESSION['2Spieler'])) {
 
 <div>
 
-	<form action="spiel-tictactoe.php" method="get">
+	<form action="" method="get">
 	<div class="form-row">
+	
 		<div class="form-group" >
 			<label for="1Spieler" >1 Spieler:</label><br>
 			<input type="text" name="1Spieler" value="<?= htmlspecialchars($_SESSION['1Spieler'] ?? '') ?>" required ><br>
 		</div>
 		<br>
 		
+		<div>
+			<div class="form-group" >
+				<label for="matchcode" >Match Code:</label><br>
+				<input type="text" name="matchcode" required >
+			</div>
+		
+			<div class="submit-row">
+			<input type="submit" class="zentral button" value="Match Beitreten">
+			</div>
+		</div>	
+	
+	</div>
+	</form>
+	
+	<br><br>
+	
+	<form action="" method="get">
+	<div class="form-row">
+	
 		<div class="form-group" >
-			<label for="2Spieler" >2 Spieler:</label><br>
-			<input type="text" name="2Spieler" value="<?= htmlspecialchars($_SESSION ['2Spieler'] ?? '') ?>" required >
+			<label for="1Spieler" >1 Spieler:</label><br>
+			<input type="text" name="1Spieler" value="<?= htmlspecialchars($_SESSION['1Spieler'] ?? '') ?>" required ><br>
 		</div>
 		
 		<br>
-	</div>
-	<br>
+		
+		<div class="submit-row">
+			<input type="submit" class="zentral button" value="Neues Match Starten">
+		</div>
 	
-	<div class="submit-row">
-		<input type="submit" class="zentral button" value="Spielen">
 	</div>
-	
 	</form>
 	
 </div>
