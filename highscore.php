@@ -18,7 +18,7 @@
 		
 		<?php
 		
-			$mysqli = new mysqli("localhost", "root", "", "tictactoe");
+			$mysqli = new mysqli("localhost", "amelie", "123chickenWings", "tictactoe");
 				
 			if (!empty($_POST['new_player_name'])) {
 				$stmt = $mysqli->prepare(
@@ -133,14 +133,17 @@
 		</table>
 		
 		<br>
-	
+
+	</div>
+
+	<div class="zentral container_highscore_neu">
 		<div class="button_fame_unten">
 
-			<a href="/tictactoe/spiel-tictactoe.php" class="zentral button">
+			<a href="/match.php" class="zentral button">
 				Weiter Spielen
 			</a>
 
-			<a href="/tictactoe/neuer-spieler.php"
+			<a href="/neuer-spieler.php"
 				class="zentral button">
 				Neuer Spieler
 			</a>

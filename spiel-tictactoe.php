@@ -20,7 +20,7 @@ if (!isset($_SESSION['scoreO'])) {
     $_SESSION['scoreO'] = 0;
 }
 
-$mysqli = new mysqli("localhost", "root", "", "tictactoe");
+$mysqli = new mysqli("localhost", "amelie", "123chickenWings", "tictactoe");
 
 /* Spieler erstellen */
 function createPlayerIfNotExists($mysqli, $name) {
@@ -124,7 +124,7 @@ else {
                 }
 
                 $board = array_fill(1, 9, '');
-                $_SESSION['currentPlayer'] = 'O'; // ✅ Wechsel!
+                $_SESSION['currentPlayer'] = 'O';
                 header("Location: spiel-tictactoe.php");
                 exit;
             }
@@ -148,7 +148,7 @@ else {
                 }
 
                 $board = array_fill(1, 9, '');
-                $_SESSION['currentPlayer'] = 'X'; // ✅ Wechsel!
+                $_SESSION['currentPlayer'] = 'X';
                 header("Location: spiel-tictactoe.php");
                 exit;
             }
@@ -175,7 +175,7 @@ $currentPlayer = $_SESSION['currentPlayer'];
 <!DOCTYPE html>
 <html>
 
-<head> 
+<head>
 
 <meta charset="UTF-8"> <!-- Zeichencodierung wegen umlauten etc.-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -197,14 +197,14 @@ $currentPlayer = $_SESSION['currentPlayer'];
 			<div class="player-name">
 			<?= htmlspecialchars($_SESSION['1Spieler'] ?? '') ?>  <!-- htmlspecialchars schützt vor HTML/Java -->
 			</div>
-		</div>	
-	
+		</div
+
 		<div class="points">
 			<div class="scores">
 				<div id="p1" class="score"><?= $_SESSION['scoreX'] ?></div>
 				<div id="p2" class="score"><?= $_SESSION['scoreO'] ?></div>
 			</div>
-			
+
 			<button class="button" type="submit" name="reset" value="1">
 				Reset <!-- Reset-Button: löst $_POST['reset'] aus -->
 			</button>
@@ -226,7 +226,7 @@ $currentPlayer = $_SESSION['currentPlayer'];
 			<?php for ($i = 1; $i <= 9; $i++): ?>  <!-- Schleife erzeugt die 9 Spielfelde -->
 
 				<button
-			
+
 					class="cell"
 					type="submit"
 					name="cell"

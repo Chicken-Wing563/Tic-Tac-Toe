@@ -2,6 +2,30 @@
 * {
     box-sizing: border-box;
 }
+.senkrechte-linie {
+  border-left: 3px solid black; /* Dicke und Farbe der Linie */
+  height: 30px; /* Die Länge des Strichs */
+  margin: 20px; /* Abstand um die Linie */
+}
+.matchcode {
+	padding: 10px;
+	text-align: center;
+}
+
+.code {
+background-color:#fdd5f9;
+	color : #631870;
+	cursor: not-allowed;
+	border: 1px solid #ccc;
+	pointer-events:none;
+	display: inline-block;
+	font-size: 16px;
+	text-align: center;
+	margin: 0 auto;
+	padding: 5px 10px;
+	align-items: center;
+	width: 15ch;
+}
 
 .zentral {
  text-align: center;
@@ -9,14 +33,14 @@
  align-items: center;
 }
 
+
 .form-row {
     display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
-    font-weight: 620;
-    flex-wrap: wrap; 
+    flex-direction: column; 
+    align-items: center;   
+    gap: 10px;
 }
+
 
 .submit-row {
     text-align: center;

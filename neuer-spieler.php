@@ -14,13 +14,13 @@
 <body>
 
 <div class="zentral container_highscore_neu"> 
-   
+  
 	<h1>Neuen Spieler adden</h1>
 
-	
+
 	<?php
-	
-		$mysqli = new mysqli("localhost", "root", "", "tictactoe");
+
+		$mysqli = new mysqli("localhost", "amelie", "123chickenWings", "tictactoe");
 
 		if (!empty($_POST['name'])) {
 
@@ -34,8 +34,8 @@
 
 			if ($check->num_rows > 0) {
 				echo "<p style='color:red'>❌ Spieler existiert bereits.</p>";
-			} 
-			
+			}
+
 			else {
 				$stmt = $mysqli->prepare(
 					"INSERT INTO spieler (Name, Score, Created, Updated)
@@ -51,33 +51,34 @@
 
 			$check->close();
 		}
-		
+
 	?>
 
 
 	<form method="post">
-		
-		<input 
+
+		<input
 			type="text"
 			name="name"
 			placeholder="Spielername"
 			required
 		>
-		
+
 		<br><br>
-		
+
 		<button class="zentral button_fame">
 		Zur Highscore Liste Hinzufügen
 		</button>
-		
+
 	</form>
-	
+
 	<br>
-	
-	<a href="/tictactoe/highscore.php" class="zentral button">
+
+	<a href="/highscore.php" class="zentral button">
 	Zurück
 	</a>
-	
+
+
 </div>
 
 </body>
