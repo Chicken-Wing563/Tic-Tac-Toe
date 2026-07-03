@@ -96,7 +96,7 @@
 	
 						echo "<td>
 						<div class='action-buttons'>
-						
+						<!--
 							<form method='post' style='display:inline'>
 								<input type='hidden' name='score_name' value='{$row['Name']}'>
 								<input type='hidden' name='score_action' value='plus'>
@@ -108,7 +108,7 @@
 								<input type='hidden' name='score_action' value='minus'>
 								<button class='button_fame minus'>-1</button>
 							</form>
-							
+						-->	
 							<br>
 							
 							<form method='post' style='display:inline'>
